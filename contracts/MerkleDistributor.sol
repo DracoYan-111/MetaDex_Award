@@ -55,7 +55,7 @@ contract MerkleDistributor is IMerkleDistributor, Ownable {
 
     function blackList(address[] calldata userList, bool state) external onlyOwner {
         for (uint256 i = 0; i < userList.length; i++) {
-            blackListUser[userList] = state;
+            blackListUser[userList[i]] = state;
             emit blackListStart(block.timestamp, userList[i], state);
         }
     }
