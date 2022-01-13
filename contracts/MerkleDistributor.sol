@@ -24,15 +24,14 @@ contract MerkleDistributor is IMerkleDistributor, Ownable {
     */
     constructor(
         address token_,
-        bytes32 merkleRoot_,
-        address owner_){
+        bytes32 merkleRoot_){
         token = token_;
         merkleRoot = merkleRoot_;
-        transferOwnership(owner_);
     }
 
     /*
-    * @notice Check whether the user corresponding to the index has already received it
+    * @notice Check whether the user corresponding to
+              the index has already received it
     * @dev Use an algorithm to achieve state uniqueness for each number
     * @param index The state of the index in this payout pool
     * @return the state of the incoming index
@@ -48,7 +47,8 @@ contract MerkleDistributor is IMerkleDistributor, Ownable {
     }
 
     /*
-    * @dev Modify the state corresponding to the user index when the user successfully receives it
+    * @dev Modify the state corresponding to
+           the user index when the user successfully receives it
     * @param index The state of the index in this payout pool
     */
     function _setClaimed(
@@ -91,8 +91,8 @@ contract MerkleDistributor is IMerkleDistributor, Ownable {
     * @notice Add user to blacklist
     * @dev Only the owner can use it, add the user to
            the blacklist, and trigger the black List Start event
-    * @param userList 用户地址
-    * @param state 用户地址对应的黑名单状态
+    * @param userList User address array
+    * @param state Blacklist status corresponding to user address
     */
     function blackList(
         address[] calldata userList,
@@ -107,15 +107,15 @@ contract MerkleDistributor is IMerkleDistributor, Ownable {
     /*
     * @notice The administrator withdraws the remaining tokens in this payment pool
     * @dev Only the owner can use it
-    * @param tokenAddress_ The received token address
-    * @param from_ Receive the transfer user address
-    * @param count_ Number of transfers
+    * @param tokenAddress The received token address
+    * @param from Receive the transfer user address
+    * @param count Number of transfers
     */
     function extract(
-        address tokenAddress_,
-        address from_,
-        uint256 count_
+        address tokenAddress,
+        address from,
+        uint256 count
     ) external onlyOwner {
-        IERC20(tokenAddress_).transferFrom(address(this), from_, count_);
+        IERC20(tokenAddress).transferFrom(address(this), from, count);
     }
 }

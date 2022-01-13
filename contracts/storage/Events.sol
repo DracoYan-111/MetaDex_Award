@@ -5,9 +5,9 @@ contract Events {
 
     /*
     * New payment pool event
-    * blockTimestamp,tokenAddress,merkleRoot
+    * blockTimestamp,tokenAddress,newMerkleDistributor
     */
-    event newPaymentPool(uint256 blockTimestamp,address tokenAddress,bytes32 merkleRoot);
+    event newPaymentPool(uint256 blockTimestamp,address tokenAddress,address newMerkleDistributor);
 
 
 }
