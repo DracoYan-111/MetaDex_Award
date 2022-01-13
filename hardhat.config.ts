@@ -6,9 +6,9 @@ import "hardhat-gas-reporter";
 import "@nomiclabs/hardhat-etherscan";
 
 
-const BSC_TESTNET_PRIVATE_KEY = "a0ef96168936ce34480d2a65aab0799f096446ed6e9c43147a23fe992ec9ae5d";
-const BSC_MAINNET_PRIVATE_KEY = "a0ef96168936ce34480d2a65aab0799f096446ed6e9c43147a23fe992ec9ae5d"
-const ROPSTEN_PRIVATE_KEY = "a0ef96168936ce34480d2a65aab0799f096446ed6e9c43147a23fe992ec9ae5d";
+const BSC_TESTNET_PRIVATE_KEY = "";
+const BSC_MAINNET_PRIVATE_KEY = ""
+const ROPSTEN_PRIVATE_KEY = "";
 /**
  * @type import('hardhat/config').HardhatUserConfig
  * 0x8626f6940e2eb28930efb4cef49b2d1f2c9c1199
