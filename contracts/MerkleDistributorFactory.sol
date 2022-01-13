@@ -38,6 +38,7 @@ contract MerkleDistributorFactory is AccessControlEnumerableUpgradeable, Storage
         address tokenAddress,
         bytes32 merkleRoot
     ) external onlyRole(PROJECT_ADMINISTRATORS){
+        _merkleDistributorIds.increment();
         address new_MerkleDistributor=address(new MerkleDistributor(tokenAddress, merkleRoot));
         merkleDistributorIds[_merkleDistributorIds.current()] =new_MerkleDistributor;
         emit newPaymentPool(block.timestamp, tokenAddress, new_MerkleDistributor);
