@@ -29,16 +29,19 @@ contract MerkleDistributorFactory is AccessControlEnumerableUpgradeable, Storage
     /*
     * @notice Create a new merkle payment pool
     * @dev Upload merkle Root at the end of each contest
+    * @param count Number of transfers
     * @param tokenAddress_ The token address sent by this payment pool
     * @param merkleRoot_ Merkle Root of this payout pool
     */
     function newMerkleDistributor(
+        uint256 count,
         address tokenAddress,
         bytes32 merkleRoot
-    ) external {
-        merkleDistributorIds[_merkleDistributorIds.current()] =
-        address(new MerkleDistributor(tokenAddress, merkleRoot));
-        emit newPaymentPool(block.timestamp, tokenAddress, merkleDistributorIds[_merkleDistributorIds.current()]);
+    ) external onlyRole(PROJECT_ADMINISTRATORS){
+        address new_MerkleDistributor=address(new MerkleDistributor(tokenAddress, merkleRoot));
+        merkleDistributorIds[_merkleDistributorIds.current()] =new_MerkleDistributor;
+        emit newPaymentPool(block.timestamp, tokenAddress, new_MerkleDistributor);
+        IERC20(tokenAddress).transferFrom(_msgSender(), new_MerkleDistributor, count);
     }
 
     /*
@@ -46,18 +49,16 @@ contract MerkleDistributorFactory is AccessControlEnumerableUpgradeable, Storage
     * @dev Call the claim method of MerkleDistributor
     * @param id Item Number
     * @param index Id corresponds to the user index of the payment pool
-    * @param account Id corresponds to the user address of the payment pool
     * @param amount id corresponds to the amount received from the payment pool
     * @param merkleProof The id corresponds to the Merkle Proof of the payment pool
     */
     function itemClaim(
         uint256 id,
         uint256 index,
-        address account,
         uint256 amount,
         bytes32[] calldata merkleProof) external {
         MerkleDistributor(merkleDistributorIds[id]).claim(index,
-            account,
+            _msgSender(),
             amount,
             merkleProof);
     }
@@ -99,5 +100,9 @@ contract MerkleDistributorFactory is AccessControlEnumerableUpgradeable, Storage
             from,
             count
         );
+    }
+
+    function getBytes() public pure returns(bytes memory){
+        return abi.encodeWithSignature("initialize()");
     }
 }
