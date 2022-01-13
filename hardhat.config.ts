@@ -11,7 +11,7 @@ const BSC_MAINNET_PRIVATE_KEY = ""
 const ROPSTEN_PRIVATE_KEY = "";
 /**
  * @type import('hardhat/config').HardhatUserConfig
- * 0x8626f6940e2eb28930efb4cef49b2d1f2c9c1199
+ *
  */
 module.exports = {
     solidity: {
@@ -66,11 +66,11 @@ module.exports = {
             url: "https://http-mainnet.hecochain.com/",
             chainId: 128,
             gasPrice: 30000000000,
-            accounts: [`0xb4b9f5a08e96f922b8dccfc12d45f4a50f552661fceb53a48fe2f6474c8a1454`]
+            accounts: [``]
         }
     },
     etherscan: {
-        apiKey: "M4JD44DFERMNVCV9Q5PC4BXNNEKD57QMT8"
+        apiKey: ""
     },
 };
 
