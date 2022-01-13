@@ -116,6 +116,6 @@ contract MerkleDistributor is IMerkleDistributor, Ownable {
         address from,
         uint256 count
     ) external onlyOwner {
-        IERC20(tokenAddress).transferFrom(address(this), from, count);
+        IERC20(tokenAddress).transfer(from, count);
     }
 }
