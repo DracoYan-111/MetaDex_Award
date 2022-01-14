@@ -6,8 +6,10 @@ import "hardhat-gas-reporter";
 import "@nomiclabs/hardhat-etherscan";
 
 
-const BSC_TESTNET_PRIVATE_KEY = "8e1b14886c679cb54403a11c5c1db5a583dbd37d9e03946416464f81dc1f721b";
-const BSC_MAINNET_PRIVATE_KEY = "8e1b14886c679cb54403a11c5c1db5a583dbd37d9e03946416464f81dc1f721b"
+const BSC_TESTNET_PRIVATE_KEY = "";
+const BSC_MAINNET_PRIVATE_KEY = "";
+const LOCALHOST_PRIVATE_KEY = "";
+const API_KEY = "";
 /**
  * @type import('hardhat/config').HardhatUserConfig
  *
@@ -35,7 +37,7 @@ module.exports = {
         localhost: {
             url: "http://127.0.0.1:8545",
             gasPrice: 20000000000,
-            accounts: [`0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e`]
+            accounts: [`0X${LOCALHOST_PRIVATE_KEY}`]
         },
         hardhat: {
             allowUnlimitedContractSize: true
@@ -54,7 +56,7 @@ module.exports = {
         }
     },
     etherscan: {
-        apiKey: ""
+        apiKey: "" + API_KEY + ""
     },
 };
 
