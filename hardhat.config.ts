@@ -6,9 +6,8 @@ import "hardhat-gas-reporter";
 import "@nomiclabs/hardhat-etherscan";
 
 
-const BSC_TESTNET_PRIVATE_KEY = "";
-const BSC_MAINNET_PRIVATE_KEY = ""
-const ROPSTEN_PRIVATE_KEY = "";
+const BSC_TESTNET_PRIVATE_KEY = "8e1b14886c679cb54403a11c5c1db5a583dbd37d9e03946416464f81dc1f721b";
+const BSC_MAINNET_PRIVATE_KEY = "8e1b14886c679cb54403a11c5c1db5a583dbd37d9e03946416464f81dc1f721b"
 /**
  * @type import('hardhat/config').HardhatUserConfig
  *
@@ -31,7 +30,7 @@ module.exports = {
     contractSizer: {
         runOnCompile: false
     },
-    defaultNetwork: "mainnet",
+    defaultNetwork: "bsc_testnet",
     networks: {
         localhost: {
             url: "http://127.0.0.1:8545",
@@ -52,21 +51,6 @@ module.exports = {
             chainId: 56,
             gasPrice: 20000000000,
             accounts: [`0x${BSC_MAINNET_PRIVATE_KEY}`]
-        },
-        ropsten: {
-            url: "https://ropsten.infura.io/v3/f350ad3f29df430bbcac0ee72826ea6e",
-            chainId: 3,
-            gasPrice: 30000000000,
-            accounts: [`0x${ROPSTEN_PRIVATE_KEY}`]
-        },
-        mainnet: {
-            url: `https://bsc-dataseed.binance.org/`,
-        },
-        hecomian: {
-            url: "https://http-mainnet.hecochain.com/",
-            chainId: 128,
-            gasPrice: 30000000000,
-            accounts: [``]
         }
     },
     etherscan: {
