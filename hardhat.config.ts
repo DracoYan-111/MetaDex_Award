@@ -56,7 +56,7 @@ module.exports = {
         }
     },
     etherscan: {
-        apiKey: "" + API_KEY + "adfa"
+        apiKey: "" + API_KEY + ""
     },
 };
 

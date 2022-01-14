@@ -5,5 +5,5 @@ cache
 artifacts
 typechain
 other
-MetaDex_Award/hardhat.config.ts
+hardhat.config.ts
 .DS_Store
