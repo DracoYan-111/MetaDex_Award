@@ -14,13 +14,13 @@ const hre = require('hardhat')
 
 async function main() {
     //==================== todo The constructor is the value that needs to be passed in when the contract is deployed ====================
-    let FactoryABI = ["function initialize(address token)"];
+    let FactoryABI = ["function initialize()"];
 
     let ifaceFactory = new ethers.utils.Interface(FactoryABI);
-    let getABI = ifaceFactory.encodeFunctionData("initialize",["0x4aB3aD2F19Fef6c5A00Cb8c6cD020c5D96fC6f9b"]);
-    console.info(`getABI:` + getABI);
+    let getABI = ifaceFactory.encodeFunctionData("initialize");
+    //console.info(`getABI:` + getABI);
 
-    /*//==================== todo Deploy TestERC20 contract ====================
+    //==================== todo Deploy TestERC20 contract ====================
     const TestERC20 = await hre.ethers.getContractFactory("TestERC20");
     //Number,name,symbol of constructors passed in
     const testERC20 = await TestERC20.deploy("TEST", "TS", "100000000000000000000000000000000000000000000000000000000");
@@ -52,11 +52,9 @@ async function main() {
     let Global1 = "{\n" +
         "  \"TestERC20\": \""+ testERC20.address +"\",\n" +
         "  \"proxyAdmin\": \""+ contractProxy.address +"\",\n" +
-        "  \"MerkleDistributorFactory\": \""+ transparentUpgradeableProxy.address +"\",\n" +
-        "  \"userAddress\": \"0xc056ddB31a8b22b2bc1beEE158244220AE89840d\",\n" +
-        "  \"userKey\": \"8e1b14886c679cb54403a11c5c1db5a583dbd37d9e03946416464f81dc1f721b\"\n" +
+        "  \"MerkleDistributorFactory\": \""+ transparentUpgradeableProxy.address +"\"\n" +
         "}";
-    addjson(Global1, "./other/contractAddr.json");*/
+    addjson(Global1, "./other/contractAddr.json");
 }
 
 //生成持久化json文件

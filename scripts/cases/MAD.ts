@@ -13,8 +13,8 @@ import {ArgumentParser} from 'argparse';
 
 const MerkleDistributorFactoryAbi = require('../artifacts/contracts/MerkleDistributorFactory.sol/MerkleDistributorFactory.json');
 const TestERC20 = require('../artifacts/contracts/test/TestERC20.sol/TestERC20.json');
-const contractAddr = require('../other/contractAddr.json');
-const global = require('../other/global.json');
+const contractAddr = require('../../other/contractAddr.json');
+const global = require('../../other/global.json');
 
 
 async function main() {
@@ -37,23 +37,29 @@ async function main() {
      console.log(privateKey);*/
 
     let merkleDistributorFactory = wallets(contractAddr.MerkleDistributorFactory, MerkleDistributorFactoryAbi.abi);
-    //==================== todo Set admin rights ====================
+    let testERC20 = wallets(contractAddr.TestERC20, TestERC20.abi);
+    //==================== todo approve ====================
+    let tokenAllowance = await testERC20.allowance(global.loaclhost.user_address, contractAddr.MerkleDistributorFactory);
+    console.log("allowance quantity:" + tokenAllowance);
+    if (tokenAllowance < 100000000000000000) {
+        //==================== Approve operation ====================
+        let tokenApprove = await testERC20.approve(contractAddr.MerkleDistributorFactory, BigNumber.from("0xffffffffffffffffffffffffffffffff"));
+        console.log("approve hash:" + tokenApprove.hash);
+        await tokenApprove.wait();
+        console.log("approve Finish");
+    }
 
-    let financial = await merkleDistributorFactory.FINANCIAL_ADMINISTRATOR();
-    //console.log("financial bytes:" + financial);
+    //==================== todo New Merkle Distributor ====================
+    let newMerkleDistributor = await merkleDistributorFactory.newMerkleDistributor("1000000000000000", contractAddr.TestERC20, "0x8bda2ad46429ff995636c7f4c624c2bf47017376b261721bb9b04f0bbefcc736");
+    console.log("newMerkleDistributor hash:" + newMerkleDistributor.hash);
+    await newMerkleDistributor.wait();
+    console.log("newMerkleDistributor finish");
 
-    let grantRole_financial = await merkleDistributorFactory.grantRole(financial, global.loaclhost.user_address);
-    console.log("grantRole_financial hash:" + grantRole_financial.hash);
-    await grantRole_financial.wait();
-    console.log("grantRole_financial finish");
-
-    let project = await merkleDistributorFactory.PROJECT_ADMINISTRATORS();
-    //console.log("project bytes:" + project);
-
-    let grantRole_project = await merkleDistributorFactory.grantRole(project, global.loaclhost.user_address);
-    console.log("grantRole_project hash:" + grantRole_project.hash);
-    await grantRole_project.wait();
-    console.log("grantRole_project finish");
+    //==================== todo User Item Claim ====================
+    let itemClaim = await merkleDistributorFactory.itemClaim(0, 2, "0x0222",["0x2eb1bdabfaf6baa162de3126116ae6b0f352f688c5c2d89c02c573953eda23c0", "0xbe7c59713e084733946836a49a99055ca86ba699623bcae6ae9fef88239e8361"]);
+    console.log("itemClaim hash:" + itemClaim.hash);
+    await itemClaim.wait();
+    console.log("itemClaim finish");
 
 }
 
@@ -76,3 +82,4 @@ main()
         console.error(error);
         process.exit(1);
     });
+
