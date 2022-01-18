@@ -6,9 +6,9 @@ import "hardhat-gas-reporter";
 import "@nomiclabs/hardhat-etherscan";
 
 
-const BSC_TESTNET_PRIVATE_KEY = "3e2c99005111d32c40e446be7502e4b6f611a9768f5ae5991ea669be65548bec";
-const BSC_MAINNET_PRIVATE_KEY = "3e2c99005111d32c40e446be7502e4b6f611a9768f5ae5991ea669be65548bec";
-const LOCALHOST_PRIVATE_KEY = "3e2c99005111d32c40e446be7502e4b6f611a9768f5ae5991ea669be65548bec";
+const BSC_TESTNET_PRIVATE_KEY = "";
+const BSC_MAINNET_PRIVATE_KEY = "";
+const LOCALHOST_PRIVATE_KEY = "";
 const API_KEY = "";
 /**
  * @type import('hardhat/config').HardhatUserConfig
