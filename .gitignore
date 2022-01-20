@@ -7,3 +7,4 @@ typechain
 other
 hardhat.config.ts
 .DS_Store
+.vscode

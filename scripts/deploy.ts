@@ -14,13 +14,13 @@ const hre = require('hardhat')
 
 async function main() {
     //==================== todo The constructor is the value that needs to be passed in when the contract is deployed ====================
-    let FactoryABI = ["function initialize()"];
+    let FactoryABI = ["function initialize(address _token_Address)"];
 
     let ifaceFactory = new ethers.utils.Interface(FactoryABI);
-    let getABI = ifaceFactory.encodeFunctionData("initialize");
-    //console.info(`getABI:` + getABI);
+    let getABI = ifaceFactory.encodeFunctionData("initialize",["0xc95FB6025e1cdbD20fc748E1c90c80D97CD1865b"]);
+    console.info(`getABI:` + getABI);
 
-    //==================== todo Deploy TestERC20 contract ====================
+/*    //==================== todo Deploy TestERC20 contract ====================
     const TestERC20 = await hre.ethers.getContractFactory("TestERC20");
     //Number,name,symbol of constructors passed in
     const testERC20 = await TestERC20.deploy("TEST", "TS", "100000000000000000000000000000000000000000000000000000000");
@@ -54,7 +54,7 @@ async function main() {
         "  \"proxyAdmin\": \""+ contractProxy.address +"\",\n" +
         "  \"MerkleDistributorFactory\": \""+ transparentUpgradeableProxy.address +"\"\n" +
         "}";
-    addjson(Global1, "./other/contractAddr.json");
+    addjson(Global1, "./other/contractAddr.json");*/
 }
 
 //生成持久化json文件
