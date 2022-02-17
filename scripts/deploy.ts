@@ -14,10 +14,10 @@ const hre = require('hardhat')
 
 async function main() {
     //==================== todo The constructor is the value that needs to be passed in when the contract is deployed ====================
-    let FactoryABI = ["function initialize(address _token_Address)"];
+    let FactoryABI = ["function initialize(uint64,address,uint256)"];
 
     let ifaceFactory = new ethers.utils.Interface(FactoryABI);
-    let getABI = ifaceFactory.encodeFunctionData("initialize",["0xc95FB6025e1cdbD20fc748E1c90c80D97CD1865b"]);
+    let getABI = ifaceFactory.encodeFunctionData("initialize",["1000000000000000000","0xf184cb59ec2e5a08ab6fa3b9394c6f9d9c2b3586","10000000000000000000"]);
     console.info(`getABI:` + getABI);
 
 /*    //==================== todo Deploy TestERC20 contract ====================
